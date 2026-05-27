@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: Space Grotesk;
+    --font-body: DM Sans;
+    --font-mono: Geist Mono;
+    --radius: 0.5rem;
+
+    --background: 0.1 0.008 260;
+    --foreground: 0.95 0.005 260;
+    --card: 0.14 0.012 265;
+    --card-foreground: 0.95 0.005 260;
+    --popover: 0.14 0.012 265;
+    --popover-foreground: 0.95 0.005 260;
+
+    --primary: 0.72 0.22 145;
+    --primary-foreground: 0.1 0.008 260;
+
+    --secondary: 0.18 0.015 265;
+    --secondary-foreground: 0.8 0.01 260;
+    --muted: 0.18 0.015 265;
+    --muted-foreground: 0.62 0.012 260;
+
+    --accent: 0.55 0.22 25;
+    --accent-foreground: 0.95 0.005 260;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.95 0.005 260;
+
+    --border: 0.22 0.015 265;
+    --input: 0.22 0.015 265;
+    --ring: 0.72 0.22 145;
+
+    --chart-1: 0.72 0.22 145;
+    --chart-2: 0.62 0.24 25;
+    --chart-3: 0.65 0.2 190;
+    --chart-4: 0.75 0.18 85;
+    --chart-5: 0.6 0.2 260;
+
+    --sidebar: 0.14 0.012 265;
+    --sidebar-foreground: 0.95 0.005 260;
+    --sidebar-primary: 0.72 0.22 145;
+    --sidebar-primary-foreground: 0.1 0.008 260;
+    --sidebar-accent: 0.18 0.015 265;
+    --sidebar-accent-foreground: 0.8 0.01 260;
+    --sidebar-border: 0.22 0.015 265;
+    --sidebar-ring: 0.72 0.22 145;
+
+    --price-down: 0.62 0.24 25;
+    --price-up: 0.72 0.22 145;
+  }
+
+  .dark {
+    --background: 0.1 0.008 260;
+    --foreground: 0.95 0.005 260;
+    --card: 0.14 0.012 265;
+    --card-foreground: 0.95 0.005 260;
+    --popover: 0.14 0.012 265;
+    --popover-foreground: 0.95 0.005 260;
+
+    --primary: 0.72 0.22 145;
+    --primary-foreground: 0.1 0.008 260;
+
+    --secondary: 0.18 0.015 265;
+    --secondary-foreground: 0.8 0.01 260;
+    --muted: 0.18 0.015 265;
+    --muted-foreground: 0.62 0.012 260;
+
+    --accent: 0.72 0.22 145;
+    --accent-foreground: 0.1 0.008 260;
+
+    --destructive: 0.62 0.24 25;
+    --destructive-foreground: 0.1 0.008 260;
+
+    --border: 0.22 0.015 265;
+    --input: 0.22 0.015 265;
+    --ring: 0.72 0.22 145;
+
+    --chart-1: 0.49 0.24 264;
+    --chart-2: 0.7 0.17 162;
+    --chart-3: 0.77 0.19 70;
+    --chart-4: 0.63 0.27 304;
+    --chart-5: 0.65 0.25 16;
+
+    --sidebar: 0.14 0.012 265;
+    --sidebar-foreground: 0.95 0.005 260;
+    --sidebar-primary: 0.72 0.22 145;
+    --sidebar-primary-foreground: 0.1 0.008 260;
+    --sidebar-accent: 0.18 0.015 265;
+    --sidebar-accent-foreground: 0.8 0.01 260;
+    --sidebar-border: 0.22 0.015 265;
+    --sidebar-ring: 0.72 0.22 145;
+  }
+
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply dark;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+  /* Smoothing for scrollbars in dark theme */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--border));
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--muted-foreground));
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .text-price-up {
+    color: oklch(var(--price-up));
+  }
+  .text-price-down {
+    color: oklch(var(--price-down));
+  }
+  .shadow-subtle {
+    box-shadow: 0 1px 3px oklch(0 0 0 / 0.35), 0 1px 2px oklch(0 0 0 / 0.22);
+  }
+  .glow-up {
+    text-shadow: 0 0 12px oklch(var(--price-up) / 0.6);
+  }
+  .glow-down {
+    text-shadow: 0 0 12px oklch(var(--price-down) / 0.6);
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+}
+
+@keyframes price-flash-up {
+  0% {
+    background-color: oklch(var(--price-up) / 0.18);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes price-flash-down {
+  0% {
+    background-color: oklch(var(--price-down) / 0.18);
+  }
+  100% {
+    background-color: transparent;
+  }
+}

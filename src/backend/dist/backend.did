@@ -1,0 +1,115 @@
+type http_request_result = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type http_header = 
+ record {
+   name: text;
+   value: text;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: http_request_result;
+ };
+type SparklineData = vec float64;
+type MarketResponse = 
+ record {
+   coins: vec Coin;
+   page: nat;
+   perPage: nat;
+   updatedAt: int;
+ };
+type LinePoint = 
+ record {
+   price: float64;
+   timestamp: int;
+ };
+type GlobalStats = 
+ record {
+   activeCryptocurrencies: nat;
+   btcDominance: float64;
+   ethDominance: float64;
+   marketCapChangePercentage24h: float64;
+   markets: nat;
+   totalMarketCap: float64;
+   totalVolume24h: float64;
+ };
+type GlobalResponse = 
+ record {
+   stats: GlobalStats;
+   updatedAt: int;
+ };
+type Coin = 
+ record {
+   ath: float64;
+   athChangePercentage: float64;
+   circulatingSupply: float64;
+   currentPrice: float64;
+   high24h: float64;
+   id: text;
+   image: text;
+   low24h: float64;
+   marketCap: float64;
+   marketCapRank: nat;
+   name: text;
+   priceChangePercentage1h: float64;
+   priceChangePercentage24h: float64;
+   priceChangePercentage7d: float64;
+   sparkline7d: SparklineData;
+   symbol: text;
+   totalSupply: float64;
+   totalVolume: float64;
+ };
+type ChartKind = 
+ variant {
+   candle;
+   line;
+ };
+type ChartData = 
+ record {
+   candles: vec Candle;
+   coinId: text;
+   days: nat;
+   kind: ChartKind;
+   line: vec LinePoint;
+   updatedAt: int;
+ };
+type Candle = 
+ record {
+   close: float64;
+   high: float64;
+   low: float64;
+   open: float64;
+   timestamp: int;
+ };
+type ApiResult_2 = 
+ variant {
+   err: text;
+   ok: ChartData;
+ };
+type ApiResult_1 = 
+ variant {
+   err: text;
+   ok: GlobalResponse;
+ };
+type ApiResult = 
+ variant {
+   err: text;
+   ok: MarketResponse;
+ };
+service : {
+  getCoinChart: (coinId: text, days: nat, kind: ChartKind) -> (ApiResult_2);
+  getGlobalStats: () -> (ApiResult_1);
+  getMarketData: () -> (ApiResult);
+  getMarketDataPage: (page: nat, perPage: nat) -> (ApiResult);
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+}

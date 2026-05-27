@@ -1,0 +1,38 @@
+{
+  "overview": "A high-end, real-time cryptocurrency market-cap tracker built on the ICP blockchain. Shows the top 100 coins with live EUR prices, multi-timeframe performance (1h / 24h / 7d), interactive sparklines and a one-tap coin profile — styled as a German-language trading terminal that beats CoinMarketCap and CoinGecko on density and speed.",
+  "features": [
+    "Top 100 cryptocurrencies ranked by market cap, refreshed every 30 seconds",
+    "Live EUR prices fetched via ICP HTTP outcalls with 60-second server-side cache",
+    "Global stats bar: total market cap, 24h volume, BTC and ETH dominance, active coins",
+    "Top Movers strips for gainers and losers, per chosen timeframe",
+    "Three timeframes selectable (1h / 24h / 7d) that switch table column, top movers and sort",
+    "7-day sparkline charts with gradient fill, color-coded by 7d direction",
+    "Persistent client-side watchlist with star toggle and 'Watchlist' tab",
+    "Quick-filter tabs: Alle, Watchlist, Top Gewinner, Top Verlierer",
+    "Coin detail drawer with large chart, 1h/24h/7d performance, ATH distance, volume, supply, 24h high/low",
+    "Subtle price-flash highlight on live tick changes (green up, red down)",
+    "Search with Cmd/Ctrl+K shortcut, Esc-to-clear and German collation",
+    "Sortable table: rank, price, change %, volume, market cap",
+    "Sticky column header below site header for scrolling comfort",
+    "German number formatting throughout (1.234,56 €, Mio / Mrd / Bio)",
+    "Mobile-first responsive layout: progressive column hiding, card-friendly rows",
+    "Stale-data fallback: canister serves last good snapshot if upstream API fails",
+    "Skeleton loading states across global stats, top movers and the main table",
+    "Error state with retry and informative empty states for search and watchlist"
+  ],
+  "category": "finance-dashboard",
+  "tags": [
+    "crypto",
+    "market-cap",
+    "real-time",
+    "dark-theme",
+    "german",
+    "responsive",
+    "finance",
+    "icp",
+    "internet-computer",
+    "watchlist",
+    "trading-terminal"
+  ],
+  "last_updated": "2026-05-26T00:00:00.000Z"
+}
